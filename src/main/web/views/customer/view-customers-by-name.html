@@ -1,0 +1,59 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Create a customer</title>
+  <link href="../main.css" rel="stylesheet">
+  <script src="../../node_modules/jquery/dist/jquery.js"></script>
+</head>
+
+<body>
+
+
+  <h1>Get Customer By ID</h1>
+  <div style="display:block;">
+    <h2>id: <input type="text" id="getCustomerField"></input></h2>
+  </div>
+  <p>Enter a customer id</p>
+  <p id="test">This is the returned json</p>
+  <button>Submit Form</button>
+  <h1>Results:</h1>
+  <p id="id"></p>
+  <br />
+  <p id="firstName"></p>
+  <br />
+  <p id="lastName"></p>
+  <br />
+  <p id="phoneNumber"></p>
+  <br />
+
+  <!--
+This gets the value of an input field
+ value = $("#getCustomerField").val(); -->
+
+  <script>
+    $("button").click(function() {
+      value = $("#getCustomerField").val();
+      $.ajax({
+        method: "GET",
+        url: "http://localhost:8080/hotel/customer/view/" + value,
+      }).done(function(output) {
+        $("#test").text(output);
+        var obj = $.parseJSON(output);
+        $("#id").text("id: " + obj.id);
+        $("#firstName").text("firstName: " + obj.firstName);
+        $("#lastName").text("lastName: " + obj.lastName);
+        $("#phoneNumber").text("phoneNumber: " + obj.phoneNumber);
+
+      });
+    });
+  </script>
+
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+
+</body>
+
+</html>

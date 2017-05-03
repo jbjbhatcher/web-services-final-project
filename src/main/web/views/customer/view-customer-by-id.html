@@ -1,0 +1,75 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Create a customer</title>
+  <link href="../main.css" rel="stylesheet">
+  <script src="../../node_modules/jquery/dist/jquery.js"></script>
+</head>
+
+<body>
+
+
+  <h1>Get Customer By ID</h1>
+  <div style="display:block;">
+    <h2>id: <input type="text" id="getCustomerField"></input></h2>
+  </div>
+  <p>Enter a customer id</p>
+  <p id="test">This is the returned json</p>
+  <button>Submit Form</button>
+  <h1>Results:</h1>
+  <p id="id"></p>
+  <br />
+  <p id="firstName"></p>
+  <br />
+  <p id="lastName"></p>
+  <br />
+  <p id="phoneNumber"></p>
+  <br />
+  <p id="billingAddress"></p>
+  <br />
+  <p id="billingCity"></p>
+  <br />
+  <p id="billingState"></p>
+  <br />
+  <p id="billingZip"></p>
+  <br />
+  <p id="checkinDate"></p>
+  <br />
+  <p id="checkoutDate"></p>
+  <br />
+  <!--
+This gets the value of an input field
+ value = $("#getCustomerField").val(); -->
+
+  <script>
+    $("button").click(function() {
+      value = $("#getCustomerField").val();
+      $.ajax({
+        method: "GET",
+        url: "http://localhost:8080/hotel/customer/view/" + value,
+      }).done(function(html) {
+        $("#test").text(html);
+        var obj = $.parseJSON(html);
+        $("#id").text("id: " + obj.id);
+        $("#firstName").text("firstName: " + obj.firstName);
+        $("#lastName").text("lastName: " + obj.lastName);
+        $("#phoneNumber").text("phoneNumber: " + obj.phoneNumber);
+        $("#billingAddress").text("billingAddress: " + obj.billingAddress);
+        $("#billingCity").text("billingCity: " + obj.billingCity);
+        $("#billingState").text("billingState: " + obj.billingState);
+        $("#billingZip").text("billingZip: " + obj.billingZip);
+        $("#checkinDate").text("checkinDate: " + obj.checkinDate);
+        $("#checkoutDate").text("checkoutDate: " + obj.checkoutDate);
+      });
+    });
+  </script>
+
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+
+</body>
+
+</html>

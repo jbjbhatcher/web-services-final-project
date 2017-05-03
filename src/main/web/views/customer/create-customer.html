@@ -1,0 +1,72 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Create a customer</title>
+  <link href="../main.css" rel="stylesheet">
+  <script src="../../node_modules/jquery/dist/jquery.js"></script>
+
+</head>
+
+<body>
+
+
+  <h1>Create a customer</h1>
+  <div style="display:block;">
+    <h2>id: <input type="text" id="getCustomerField"></input></h2>
+  </div>
+  <p>Enter a customer id</p>
+  <p id="test">This will be true on success, false on failure</p>
+  <button>Submit Form</button>
+  <h1>Enter the following information:</h1>
+  <div id="inputFields">
+    <h2>firstName: <input type="text" id="firstNameInputField"></input></h2>
+    <br />
+    <h2>lastName: <input type="text" id="lastNameInputField"></input></h2>
+    <br />
+    <h2>phoneNumber: <input type="text" id="phoneNumberInputField"></input></h2>
+    <br />
+    <h2>billingAddress: <input type="text" id="billingAddressInputField"></input></h2>
+    <br />
+    <h2>billingCity: <input type="text" id="billingCityInputField"></input></h2>
+    <br />
+    <h2>billingState: <input type="text" id="billingStateInputField"></input></h2>
+    <br />
+    <h2>billingZip: <input type="text" id="billingZipInputField"></input></h2>
+    <br />
+    <h2>checkinDate: <input type="text" id="checkinDateInputField"></input></h2>
+    <br />
+    <h2>checkoutDate: <input type="text" id="checkoutDateInputField"></input></h2>
+    <br />
+    <button>Submit</button>
+  </div>
+  <!--
+This gets the value of an input field
+ value = $("#getCustomerField").val(); -->
+
+  <script>
+    $("button").click(function() {
+      var outCustomer = new Object();
+      outCustomer.firstName = $("#firstNameInputField").val();
+      outCustomer.lastName = $("#lastNameInputField").val();
+      outCustomer.phoneNumber = $("#phoneNumberInputField").val();
+      outCustomer.billingAddress = $("#billingAddressInputField").val();
+      outCustomer.billingCity = $("#billingCityInputField").val();
+      outCustomer.billingState = $("#billingStateInputField").val();
+      outCustomer.billingZip = $("#billingZipInputField").val();
+      outCustomer.checkinDate = $("#checkinDateInputField").val();
+      outCustomer.checkoutDate= $("#checkoutDateInputField").val();
+      var outCustomerString = JSON.stringify(outCustomer);
+      $("#test").text(outCustomerString);
+      $.post("http://localhost:8080/hotel/customer/create",outCustomerString);
+    })
+  </script>
+
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+
+</body>
+
+</html>

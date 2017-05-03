@@ -1,0 +1,19 @@
+Josh Hatcher
+
+23 April 2017
+The application now:
+- connects to the database with username and password
+	- This is significant, as it means I can now start hooking up the database to the controller in order to update model data
+- reads the rows in the database, and prints them to the java terminal.
+
+Next Steps:
+- have the read statement pass information in order to update an html view
+- create a method for inserting data into the database, and then do the same thing as the read statement.
+
+Also:
+experimented with jquery a bit more.
+- jquery is a uniform middle man between computer and server - this means that any computer anywhere just needs to download a browser, and they get a lot of functionality.
+
+Further steps:
+- have jquery send a 'get' request to a server instance, and have it update some simple values
+- see what happens with post data
